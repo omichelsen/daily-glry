@@ -1,0 +1,20 @@
+{
+  "name": "daily-glry",
+  "version": "0.1.0",
+  "main": "daily-glry.js",
+  "description": "Daily comic strip gallery with mobile/touch support.",
+  "dependencies": {
+    "glry": "~0.1.0",
+    "moment": "~2.8.3"
+  },
+  "ignore": [
+    ".gitignore",
+    "bower.json",
+    "package.json",
+    "gulpfile.js",
+    "README.md",
+    "license.md",
+    "demo",
+    "test"
+  ]
+}
