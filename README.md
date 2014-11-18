@@ -61,7 +61,7 @@ var dailyGlry = new DailyGlry({
 
 The only required option is `host` which should be the base domain and folder of your comics. This will be used to load the daily comic file. The current year and date will be appended to `host` like this:
 
-    http://mycomic.com/archive/20140204.png
+    http://mycomic.com/archive/2014/20140204.png
 
 ### Options
 
@@ -73,7 +73,7 @@ The available options and their defaults are as follows:
     host: null,
     enableHash: true,
     hashFormat: 'YYYY-MM-DD',
-    nameFormat: 'YYYYMMDD',
+    nameFormat: 'YYYY/YYYYMMDD',
     extension: '.png',
     onOutOfRange: false
 }

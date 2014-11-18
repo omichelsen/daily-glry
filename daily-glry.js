@@ -26,7 +26,7 @@
             host: null,
             enableHash: true,
             hashFormat: 'YYYY-MM-DD',
-            nameFormat: 'YYYYMMDD',
+            nameFormat: 'YYYY/YYYYMMDD',
             extension: '.png',
             onOutOfRange: false,
             load: load
@@ -109,7 +109,7 @@
         }
 
         function getImageUrl(date) {
-            return options.host + date.year() + '/' + date.format(options.nameFormat) + options.extension;
+            return options.host + date.format(options.nameFormat) + options.extension;
         }
     }
 
