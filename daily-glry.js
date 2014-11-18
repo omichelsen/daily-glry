@@ -1,5 +1,5 @@
 /*!
- * daily-glry v0.1.0 (https://github.com/omichelsen/daily-glry)
+ * daily-glry v0.2.0 (https://github.com/omichelsen/daily-glry)
  * Copyright 2014 Ole Michelsen <ole@michelsen.dk>
  * Licensed under MIT
  */
