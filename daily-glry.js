@@ -12,16 +12,8 @@
 }(this, function (Glry, moment) {
     'use strict';
 
-    function extend(target, source) {
-        if (typeof source !== 'object') return target;
-        for (var prop in source) {
-            target[prop] = source[prop];
-        }
-        return target;
-    }
-
     function DailyGlry(options) {
-        var options = extend({
+        var options = Glry.prototype.extend({
             target: '#figure',
             host: null,
             enableHash: true,
