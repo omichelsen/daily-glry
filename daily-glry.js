@@ -30,24 +30,13 @@
         var glry = new Glry(options);
 
         window.addEventListener('hashchange', glry.loadImage.bind(this));
-
         window.addEventListener('shake', glry.loadImage.bind(this, 'random'));
+        window.addEventListener('keyup', handleKeyboard);
 
-        window.addEventListener('keyup', function (e) {
-            e.preventDefault();
-            if (e.keyCode === 82) {
-                glry.loadImage('random');
-            } else if (e.keyCode === 84) {
-                glry.loadImage('today');
-            }
-        });
-
-        document.querySelector('.prev').addEventListener('click', glry.loadImage.bind(this, 'left'));
-        document.querySelector('.next').addEventListener('click', glry.loadImage.bind(this, 'right'));
-        document.querySelector('.rand').addEventListener('click', glry.loadImage.bind(this, 'random'));
-        document.querySelector('.today').addEventListener('click', glry.loadImage.bind(this, 'today'));
-
-        document.querySelector('.share').addEventListener('click', function () {
+        var elm = typeof options.target === 'object' ? options.target : document.querySelector(options.target);
+        elm.querySelector('.rand').addEventListener('tap', handleNavigationClick.bind(this, 'random'));
+        elm.querySelector('.today').addEventListener('tap', handleNavigationClick.bind(this, 'today'));
+        elm.querySelector('.share').addEventListener('tap', function (e) {
             var date = getStripDate().format(options.hashFormat);
             var title = encodeURIComponent(document.title);
             window.location.href = 'mailto:?subject=Shared ' + title + ' Strip: ' + date + '&body=See this funny strip: ' + window.location.href;
@@ -83,6 +72,20 @@
                 window.location.hash = date.format(options.hashFormat);
 
             return getImageUrl(date);
+        }
+
+        function handleKeyboard(e) {
+            e.preventDefault();
+            if (e.keyCode === 82) {
+                glry.loadImage('random');
+            } else if (e.keyCode === 84) {
+                glry.loadImage('today');
+            }
+        }
+
+        function handleNavigationClick(direction, e) {
+            e.stopPropagation();
+            glry.loadImage(direction);
         }
 
         function getStripDate() {
