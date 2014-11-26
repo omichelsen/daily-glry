@@ -46,21 +46,11 @@
             var date;
 
             switch (direction) {
-            case 'left':
-                date = getStripDate().add(-1, 'days');
-                break;
-            case 'right':
-                date = getStripDate().add(1, 'days');
-                break;
-            case 'random':
-                date = getRandomDate();
-                break;
-            case 'today':
-                date = options.dateMax;
-                break;
-            default:
-                date = getStripDate();
-                break;
+                case 'left':    date = getStripDate().add(-1, 'days'); break;
+                case 'right':   date = getStripDate().add(1, 'days'); break;
+                case 'random':  date = getRandomDate(); break;
+                case 'today':   date = options.dateMax; break;
+                default:        date = getStripDate(); break;
             }
 
             if (date < options.dateMin || date > options.dateMax) {
