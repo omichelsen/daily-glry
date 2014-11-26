@@ -1,5 +1,5 @@
 /*!
- * daily-glry v0.3.2 (https://github.com/omichelsen/daily-glry)
+ * daily-glry v0.3.3 (https://github.com/omichelsen/daily-glry)
  * Copyright 2014 Ole Michelsen <ole@michelsen.dk>
  * Licensed under MIT
  */
@@ -16,7 +16,6 @@
         var options = Glry.prototype.extend({
             target: '#figure',
             host: null,
-            enableHash: true,
             hashFormat: 'YYYY-MM-DD',
             nameFormat: 'YYYY/YYYYMMDD',
             extension: '.png',
@@ -50,7 +49,7 @@
                 case 'right':   date = getStripDate().add(1, 'days'); break;
                 case 'random':  date = getRandomDate(); break;
                 case 'today':   date = options.dateMax; break;
-                default:        date = getStripDate(); break;
+                default:        date = (window.navigator.standalone) ? options.dateMax : getStripDate(); break;
             }
 
             if (date < options.dateMin || date > options.dateMax) {
@@ -58,8 +57,7 @@
                 return false;
             }
 
-            if (options.enableHash)
-                window.location.hash = date.format(options.hashFormat);
+            window.location.hash = date.format(options.hashFormat);
 
             return getImageUrl(date);
         }
@@ -79,8 +77,7 @@
         }
 
         function getStripDate() {
-            if (window.navigator.standalone) return options.dateMax;
-            return options.enableHash && getDateFromString(window.location.hash) || options.dateMax;
+            return getDateFromString(window.location.hash) || options.dateMax;
         }
 
         function getDateFromString(string) {
