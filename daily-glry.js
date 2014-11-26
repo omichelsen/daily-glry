@@ -79,6 +79,7 @@
         }
 
         function getStripDate() {
+            if (window.navigator.standalone) return options.dateMax;
             return options.enableHash && getDateFromString(window.location.hash) || options.dateMax;
         }
 
