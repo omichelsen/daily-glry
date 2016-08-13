@@ -1,6 +1,6 @@
 /*!
- * daily-glry v0.3.3 (https://github.com/omichelsen/daily-glry)
- * Copyright 2014 Ole Michelsen <ole@michelsen.dk>
+ * daily-glry v0.3.4 (https://github.com/omichelsen/daily-glry)
+ * Copyright 2014-2016 Ole Michelsen <ole@michelsen.dk>
  * Licensed under MIT
  */
 (function (root, factory) {
@@ -64,9 +64,9 @@
 
         function handleKeyboard(e) {
             e.preventDefault();
-            if (e.keyCode === 82) {
+            if ([82, 114].indexOf(e.keyCode) > -1) {
                 glry.loadImage('random');
-            } else if (e.keyCode === 84) {
+            } else if ([84, 116].indexOf(e.keyCode) > -1) {
                 glry.loadImage('today');
             }
         }
