@@ -12,7 +12,6 @@
     "node": ">= 0.10"
   },
   "scripts": {
-    "test": "./node_modules/karma/bin/karma start"
   },
   "repository": {
     "type": "git",

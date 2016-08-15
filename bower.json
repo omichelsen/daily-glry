@@ -10,11 +10,8 @@
   "ignore": [
     ".gitignore",
     "bower.json",
+    "LICENSE",
     "package.json",
-    "gulpfile.js",
-    "README.md",
-    "license.md",
-    "demo",
-    "test"
+    "README.md"
   ]
 }

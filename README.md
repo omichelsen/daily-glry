@@ -15,6 +15,14 @@ daily-glry is based on [glry](https://github.com/omichelsen/glry.git), and requi
 
 ## Install
 
+With npm:
+
+```bash
+$ npm install daily-glry --save
+```
+
+or bower:
+
 ```bash
 $ bower install glry daily-glry moment --save
 ```
