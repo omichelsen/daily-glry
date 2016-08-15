@@ -1,8 +1,3 @@
-/*!
- * daily-glry v0.3.4 (https://github.com/omichelsen/daily-glry)
- * Copyright 2014-2016 Ole Michelsen <ole@michelsen.dk>
- * Licensed under MIT
- */
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
         define(['Glry', 'moment'], factory);
