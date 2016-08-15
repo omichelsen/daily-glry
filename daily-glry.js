@@ -30,7 +30,7 @@
 
         window.addEventListener('hashchange', glry.loadImage.bind(this));
         window.addEventListener('shake', glry.loadImage.bind(this, 'random'));
-        window.addEventListener('keyup', handleKeyboard);
+        window.addEventListener('keypress', handleKeyboard);
 
         var elm = typeof options.target === 'object' ? options.target : document.querySelector(options.target);
         elm.querySelector('.rand').addEventListener('tap', handleNavigationClick.bind(this, 'random'));
