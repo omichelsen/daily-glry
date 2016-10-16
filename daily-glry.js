@@ -44,7 +44,7 @@
                 case 'right':   date = getStripDate().add(1, 'days'); break;
                 case 'random':  date = getRandomDate(); break;
                 case 'today':   date = options.dateMax; break;
-                default:        date = (window.navigator.standalone) ? options.dateMax : getStripDate(); break;
+                default:        date = getStripDate(); break;
             }
 
             if (date < options.dateMin || date > options.dateMax) {
@@ -52,7 +52,10 @@
                 return false;
             }
 
-            window.location.hash = date.format(options.hashFormat);
+            if (direction) {
+                setDateCookie(date);
+                setDateHash(date);
+            }
 
             return getImageUrl(date);
         }
@@ -72,12 +75,33 @@
         }
 
         function getStripDate() {
-            return getDateFromString(window.location.hash) || options.dateMax;
+            return getDateFromHash() || getDateFromCookie() || options.dateMax;
         }
 
         function getDateFromString(string) {
             if (!string) return null;
             return moment(string, options.hashFormat);
+        }
+
+        function getDateFromHash() {
+            return getDateFromString(window.location.hash);
+        }
+
+        function setDateHash(date) {
+            window.location.hash = date.format(options.hashFormat);
+        }
+
+        function getDateFromCookie() {
+            var date = /date=([^;]+)/;
+            if (date) {
+                return getDateFromString(date[1]);
+            }
+        }
+
+        function setDateCookie(date) {
+            var expires = new Date();
+            expires.addDate(expires.getDate() + 365);
+            document.cookie = 'date=' + date.format(options.hashFormat) + '; expires=' + expires.toUTCString();
         }
 
         function getRandomDate() {
