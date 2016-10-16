@@ -1,6 +1,6 @@
 {
   "name": "daily-glry",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "main": "daily-glry.js",
   "description": "Daily comic strip gallery with mobile/touch support.",
   "dependencies": {

@@ -100,7 +100,7 @@
 
         function setDateCookie(date) {
             var expires = new Date();
-            expires.addDate(expires.getDate() + 365);
+            expires.setDate(expires.getDate() + 365);
             document.cookie = 'date=' + date.format(options.hashFormat) + '; expires=' + expires.toUTCString();
         }
 
