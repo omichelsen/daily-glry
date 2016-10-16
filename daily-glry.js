@@ -92,7 +92,7 @@
         }
 
         function getDateFromCookie() {
-            var date = /date=([^;]+)/;
+            var date = /date=([^;]+)/.exec(document.cookie);
             if (date) {
                 return getDateFromString(date[1]);
             }
