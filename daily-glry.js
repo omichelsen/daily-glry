@@ -61,7 +61,6 @@
         }
 
         function handleKeyboard(e) {
-            e.preventDefault();
             if ([82, 114].indexOf(e.keyCode) > -1) {
                 glry.loadImage('random');
             } else if ([84, 116].indexOf(e.keyCode) > -1) {
