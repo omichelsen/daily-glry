@@ -15,7 +15,8 @@
             nameFormat: 'YYYY/YYYYMMDD',
             extension: '.png',
             onOutOfRange: false,
-            load: load
+            load: load,
+            canNavigate: canNavigate,
         }, options);
 
         options.dateMin = options.dateMin ? moment(options.dateMin) : moment();
@@ -36,7 +37,7 @@
             window.location.href = 'mailto:?subject=Shared ' + title + ' Strip: ' + date + '&body=See this funny strip: ' + window.location.href;
         });
 
-        function load(direction) {
+        function getNextDate(direction) {
             var date;
 
             switch (direction) {
@@ -46,6 +47,22 @@
                 case 'today':   date = options.dateMax; break;
                 default:        date = getStripDate(); break;
             }
+
+            return date;
+        }
+
+        function canNavigate(direction) {
+            var date = getNextDate(direction);
+
+            if (date < options.dateMin || date > options.dateMax) {
+                return false;
+            }
+
+            return true;
+        }
+
+        function load(direction) {
+            var date = getNextDate(direction);
 
             if (date < options.dateMin || date > options.dateMax) {
                 if (options.onOutOfRange !== false) options.onOutOfRange();
