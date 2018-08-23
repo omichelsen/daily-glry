@@ -1,5 +1,7 @@
 # daily-glry
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/omichelsen/daily-glry.svg)](https://greenkeeper.io/)
+
 Daily comic strip gallery with mobile/touch support.
 
 Intended for daily comic strips and based on the current date. Specify a start date for the earliest comic, and browse through all strips up to current day.
