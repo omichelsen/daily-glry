@@ -32,6 +32,13 @@
         elm.querySelector('.rand').addEventListener('tap', handleNavigationClick.bind(this, 'random'));
         elm.querySelector('.today').addEventListener('tap', handleNavigationClick.bind(this, 'today'));
         elm.querySelector('.share').addEventListener('tap', function (e) {
+            if (navigator.share) {
+                return navigator.share({
+                    text: document.title,
+                    url: window.location.href,
+                });
+            }
+            
             var date = getStripDate().format(options.hashFormat);
             var title = encodeURIComponent(document.title);
             window.location.href = 'mailto:?subject=Shared ' + title + ' Strip: ' + date + '&body=See this funny strip: ' + window.location.href;
