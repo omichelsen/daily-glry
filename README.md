@@ -15,24 +15,8 @@ daily-glry is based on [glry](https://github.com/omichelsen/glry.git), and requi
 
 ## Install
 
-With npm:
-
 ```bash
 $ npm install daily-glry --save
-```
-
-or bower:
-
-```bash
-$ bower install glry daily-glry moment --save
-```
-
-Include the libraries in your web page:
-
-```html
-<script src="bower_components/moment/moment.js"></script>
-<script src="bower_components/glry/glry.js"></script>
-<script src="bower_components/glry/daily-glry.js"></script>
 ```
 
 ## Usage
@@ -57,14 +41,16 @@ Place some basic HTML on your page:
 Initialize the gallery with a minimal set of options like this:
 
 ```js
-var dailyGlry = new DailyGlry({
-        dateMin: [2014, 1, 22],
-        host: 'http://mycomic.com/archive/',
-        extension: '.png',
-        onOutOfRange: function () {
-            alert('No more comics until tomorrow.');
-        }
-    });
+import DailyGlry from 'daily-glry';
+
+const dailyGlry = new DailyGlry({
+    dateMin: [2014, 1, 22],
+    host: 'http://mycomic.com/archive/',
+    extension: '.png',
+    onOutOfRange: function () {
+        alert('No more comics until tomorrow.');
+    }
+});
 ```
 
 The only required option is `host` which should be the base domain and folder of your comics. This will be used to load the daily comic file. The current year and date will be appended to `host` like this:
@@ -96,12 +82,19 @@ All the options available in [glry](https://github.com/omichelsen/glry) can also
 
 If you include the great plugin [shake.js](https://github.com/alexgibson/shake.js), shaking your device will load a random comic same as pressing <kbd>R</kbd>.
 
-Just install the plugin and include it on the page:
+Just install the plugin and include it:
 
 ```bash
-$ bower install shake.js --save
+$ npm install shake.js --save
 ```
 
-```html
-<script src="bower_components/shake.js/shake.js"></script>
+```js
+import Shake from 'shake.js';
+
+const myShakeEvent = new Shake({
+    threshold: 15, // optional shake strength threshold
+    timeout: 1000 // optional, determines the frequency of event generation
+});
+
+myShakeEvent.start();
 ```
