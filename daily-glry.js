@@ -1,4 +1,4 @@
-const Glry = require('glry');
+const { Glry } = require('glry');
 const moment = require('moment');
 
 function DailyGlry(options) {
