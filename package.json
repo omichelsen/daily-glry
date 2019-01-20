@@ -1,6 +1,6 @@
 {
   "name": "daily-glry",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Daily comic strip gallery with mobile/touch support.",
   "main": "daily-glry.js",
   "dependencies": {
@@ -11,8 +11,7 @@
   "engines": {
     "node": ">= 0.10"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/omichelsen/daily-glry.git"
