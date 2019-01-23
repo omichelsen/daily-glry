@@ -1,28 +1,31 @@
-const { Glry } = require('glry');
-const moment = require('moment');
+import { Glry } from 'glry';
+import addDays from 'date-fns/addDays';
+import format from 'date-fns/format';
+import parse from 'date-fns/parse';
 
-function DailyGlry(options) {
-    var options = Glry.prototype.extend({
+function DailyGlry(params) {
+    const options = {
         target: '#figure',
         host: null,
-        hashFormat: 'YYYY-MM-DD',
-        nameFormat: 'YYYY/YYYYMMDD',
+        hashFormat: 'yyyy-MM-dd',
+        nameFormat: 'yyyy/yyyyMMdd',
         extension: '.png',
         onOutOfRange: false,
-        load: load,
-        canNavigate: canNavigate,
-    }, options);
+        load,
+        canNavigate,
+        ...params,
+    };
 
-    options.dateMin = options.dateMin ? moment(options.dateMin) : moment();
-    options.dateMax = options.dateMax ? moment(options.dateMax) : moment();
+    options.dateMin = options.dateMin ? new Date(options.dateMin) : new Date();
+    options.dateMax = options.dateMax ? new Date(options.dateMax) : new Date();
 
-    var glry = new Glry(options);
+    const glry = new Glry(options);
 
     window.addEventListener('hashchange', glry.loadImage.bind(this));
     window.addEventListener('shake', glry.loadImage.bind(this, 'random'));
     window.addEventListener('keydown', handleKeyboard);
 
-    var elm = typeof options.target === 'object' ? options.target : document.querySelector(options.target);
+    const elm = typeof options.target === 'object' ? options.target : document.querySelector(options.target);
     elm.querySelector('.rand').addEventListener('tap', handleNavigationClick.bind(this, 'random'));
     elm.querySelector('.today').addEventListener('tap', handleNavigationClick.bind(this, 'today'));
     elm.querySelector('.share').addEventListener('tap', function (e) {
@@ -32,18 +35,18 @@ function DailyGlry(options) {
                 url: window.location.href,
             });
         }
-        
-        var date = getStripDate().format(options.hashFormat);
-        var title = encodeURIComponent(document.title);
-        window.location.href = 'mailto:?subject=Shared ' + title + ' Strip: ' + date + '&body=See this funny strip: ' + window.location.href;
+
+        const date = format(getStripDate(), options.hashFormat);
+        const title = encodeURIComponent(document.title);
+        window.location.href = `mailto:?subject=Shared ${title} Strip: ${date}&body=See this funny strip: ${window.location.href}`;
     });
 
     function getNextDate(direction) {
-        var date;
+        let date;
 
         switch (direction) {
-            case 'left':    date = getStripDate().add(-1, 'days'); break;
-            case 'right':   date = getStripDate().add(1, 'days'); break;
+            case 'left':    date = addDays(getStripDate(), -1); break;
+            case 'right':   date = addDays(getStripDate(), 1); break;
             case 'random':  date = getRandomDate(); break;
             case 'today':   date = options.dateMax; break;
             default:        date = getStripDate(); break;
@@ -53,7 +56,7 @@ function DailyGlry(options) {
     }
 
     function canNavigate(direction) {
-        var date = getNextDate(direction);
+        const date = getNextDate(direction);
 
         if (date < options.dateMin || date > options.dateMax) {
             return false;
@@ -63,7 +66,7 @@ function DailyGlry(options) {
     }
 
     function load(direction) {
-        var date = getNextDate(direction);
+        const date = getNextDate(direction);
 
         if (date < options.dateMin || date > options.dateMax) {
             if (options.onOutOfRange !== false) options.onOutOfRange();
@@ -97,39 +100,38 @@ function DailyGlry(options) {
 
     function getDateFromString(string) {
         if (!string) return null;
-        return moment(string, options.hashFormat);
+        return parse(string, options.hashFormat, new Date());
     }
 
     function getDateFromHash() {
-        return getDateFromString(window.location.hash);
+        return getDateFromString(window.location.hash.replace('#', ''));
     }
 
     function setDateHash(date) {
-        window.location.hash = date.format(options.hashFormat);
+        window.location.hash = format(date, options.hashFormat);
     }
 
     function getDateFromCookie() {
-        var date = /date=([^;]+)/.exec(document.cookie);
+        const date = /date=([^;]+)/.exec(document.cookie);
         if (date) {
             return getDateFromString(date[1]);
         }
     }
 
     function setDateCookie(date) {
-        var expires = new Date();
-        expires.setDate(expires.getDate() + 365);
-        document.cookie = 'date=' + date.format(options.hashFormat) + '; expires=' + expires.toUTCString();
+        const expires = addDays(new Date(), 365).toUTCString();
+        document.cookie = `date=${format(date, options.hashFormat)}; expires=${expires}`;
     }
 
     function getRandomDate() {
-        var min = options.dateMin.valueOf(),
-            max = options.dateMax.valueOf();
-        return moment(new Date(Math.random() * (max - min) + min));
+        const min = options.dateMin.valueOf();
+        const max = options.dateMax.valueOf();
+        return new Date(Math.random() * (max - min) + min);
     }
 
     function getImageUrl(date) {
-        return options.host + date.format(options.nameFormat) + options.extension;
+        return options.host + format(date, options.nameFormat) + options.extension;
     }
 }
 
-module.exports = DailyGlry;
+export default DailyGlry;

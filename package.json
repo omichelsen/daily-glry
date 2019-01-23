@@ -4,12 +4,11 @@
   "description": "Daily comic strip gallery with mobile/touch support.",
   "main": "daily-glry.js",
   "dependencies": {
-    "glry": "*",
-    "moment": ">=2.8"
+    "date-fns": "^2.0.0-alpha.27",
+    "glry": "*"
   },
-  "devDependencies": {},
-  "engines": {
-    "node": ">= 0.10"
+  "devDependencies": {
+    "cssnano": "^4.1.8"
   },
   "scripts": {},
   "repository": {

@@ -1,0 +1,7 @@
+import DailyGlry from '../daily-glry'
+
+const dailyGlry = new DailyGlry({
+	dateMin: [1989, 4, 16],
+	host: 'https://dilbert.michelsen.dk/archive/',
+	extension: '.gif'
+})
