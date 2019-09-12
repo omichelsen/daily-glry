@@ -46,10 +46,10 @@ function DailyGlry(params) {
 
     switch (direction) {
       case 'left':    date = addDays(getStripDate(), -1); break;
-      case 'right':   date = addDays(getStripDate(), 1); break;
-      case 'random':  date = getRandomDate(); break;
-      case 'today':   date = options.dateMax; break;
-      default:        date = getStripDate(); break;
+      case 'right':   date = addDays(getStripDate(), 1);  break;
+      case 'random':  date = getRandomDate();             break;
+      case 'today':   date = options.dateMax;             break;
+      default:        date = getStripDate();              break;
     }
 
     return date;

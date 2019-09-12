@@ -25,16 +25,16 @@ Place some basic HTML on your page:
 
 ```html
 <figure id="figure">
-	<div class="loading">LOADING</div>
-	<div class="error">STRIP MISSING</div>
+  <div class="loading">LOADING</div>
+  <div class="error">STRIP MISSING</div>
 
-	<nav class="navigation">
-		<button class="prev">◀</button>
-		<button class="rand">Random</button>
-		<button class="next">▶</button>
-		<button class="today">Today</button>
-		<button class="share">Share</button>
-	</nav>
+  <nav class="navigation">
+    <button class="prev">◀</button>
+    <button class="rand">Random</button>
+    <button class="next">▶</button>
+    <button class="today">Today</button>
+    <button class="share">Share</button>
+  </nav>
 </figure>
 ```
 
@@ -44,12 +44,12 @@ Initialize the gallery with a minimal set of options like this:
 import DailyGlry from 'daily-glry';
 
 const dailyGlry = new DailyGlry({
-    dateMin: [2014, 1, 22],
-    host: 'http://mycomic.com/archive/',
-    extension: '.png',
-    onOutOfRange: function () {
-        alert('No more comics until tomorrow.');
-    }
+  dateMin: [2014, 1, 22],
+  host: 'http://mycomic.com/archive/',
+  extension: '.png',
+  onOutOfRange: function () {
+    alert('No more comics until tomorrow.');
+  }
 });
 ```
 
@@ -63,12 +63,12 @@ The available options and their defaults are as follows:
 
 ```js
 {
-    target: '#figure',
-    host: null,
-    hashFormat: 'YYYY-MM-DD',
-    nameFormat: 'YYYY/YYYYMMDD',
-    extension: '.png',
-    onOutOfRange: false
+  target: '#figure',
+  host: null,
+  hashFormat: 'YYYY-MM-DD',
+  nameFormat: 'YYYY/YYYYMMDD',
+  extension: '.png',
+  onOutOfRange: false
 }
 ```
 
@@ -92,8 +92,8 @@ $ npm install shake.js --save
 import Shake from 'shake.js';
 
 const myShakeEvent = new Shake({
-    threshold: 15, // optional shake strength threshold
-    timeout: 1000 // optional, determines the frequency of event generation
+  threshold: 15, // optional shake strength threshold
+  timeout: 1000 // optional, determines the frequency of event generation
 });
 
 myShakeEvent.start();
