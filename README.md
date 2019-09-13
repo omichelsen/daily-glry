@@ -44,7 +44,7 @@ Initialize the gallery with a minimal set of options like this:
 import DailyGlry from 'daily-glry';
 
 const dailyGlry = new DailyGlry({
-  dateMin: [2014, 1, 22],
+  dateMin: new Date(2014, 1, 22),
   host: 'http://mycomic.com/archive/',
   extension: '.png',
   onOutOfRange: function () {
