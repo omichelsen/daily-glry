@@ -7,11 +7,11 @@
     "start": "parcel demo/index.html"
   },
   "dependencies": {
-    "date-fns": "^2.2.1",
+    "date-fns": "^2.16.1",
     "glry": "^2.1.0"
   },
   "devDependencies": {
-    "parcel-bundler": "^1.12.3"
+    "parcel-bundler": "^1.12.4"
   },
   "repository": {
     "type": "git",
