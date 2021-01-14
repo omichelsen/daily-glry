@@ -16,9 +16,6 @@ function DailyGlry(params) {
     ...params,
   };
 
-  options.dateMin = options.dateMin ? new Date(options.dateMin) : new Date();
-  options.dateMax = options.dateMax ? new Date(options.dateMax) : new Date();
-
   const glry = new Glry(options);
 
   window.addEventListener('hashchange', glry.loadImage.bind(this));
@@ -41,6 +38,14 @@ function DailyGlry(params) {
     window.location.href = `mailto:?subject=Shared ${title} Strip: ${date}&body=See this funny strip: ${window.location.href}`;
   });
 
+  function getMinDate() {
+    return options.dateMin ? new Date(options.dateMin) : new Date();
+  }
+
+  function getMaxDate() {
+    return options.dateMax ? new Date(options.dateMax) : new Date();
+  }
+
   function getNextDate(direction) {
     let date;
 
@@ -48,7 +53,7 @@ function DailyGlry(params) {
       case 'left':    date = addDays(getStripDate(), -1); break;
       case 'right':   date = addDays(getStripDate(), 1);  break;
       case 'random':  date = getRandomDate();             break;
-      case 'today':   date = options.dateMax;             break;
+      case 'today':   date = getMaxDate();                break;
       default:        date = getStripDate();              break;
     }
 
@@ -58,7 +63,7 @@ function DailyGlry(params) {
   function canNavigate(direction) {
     const date = getNextDate(direction);
 
-    if (date < options.dateMin || date > options.dateMax) {
+    if (date < getMinDate() || date > getMaxDate()) {
       return false;
     }
 
@@ -68,7 +73,7 @@ function DailyGlry(params) {
   function load(direction) {
     const date = getNextDate(direction);
 
-    if (date < options.dateMin || date > options.dateMax) {
+    if (date < getMinDate() || date > getMaxDate()) {
       if (options.onOutOfRange !== false) options.onOutOfRange();
       return false;
     }
@@ -95,7 +100,7 @@ function DailyGlry(params) {
   }
 
   function getStripDate() {
-    return getDateFromHash() || getDateFromCookie() || options.dateMax;
+    return getDateFromHash() || getDateFromCookie() || getMaxDate();
   }
 
   function getDateFromString(string) {
@@ -124,8 +129,8 @@ function DailyGlry(params) {
   }
 
   function getRandomDate() {
-    const min = options.dateMin.valueOf();
-    const max = options.dateMax.valueOf();
+    const min = getMinDate().valueOf();
+    const max = getMaxDate().valueOf();
     return new Date(Math.random() * (max - min) + min);
   }
 
