@@ -11,7 +11,7 @@ Supports touch gestures (swipe & shake) and the following keyboard shortcuts:
 <kbd>R</kbd> random comic
 <kbd>T</kbd> today's comic
 
-daily-glry is based on [glry](https://github.com/omichelsen/glry.git), and requires [Moment.js](http://momentjs.com/).
+daily-glry is based on [glry](https://github.com/omichelsen/glry.git) and requires [date-fns](https://github.com/date-fns/date-fns).
 
 ## Install
 
@@ -72,7 +72,7 @@ The available options and their defaults are as follows:
 }
 ```
 
-You can change the filename and hash format with `nameFormat`/`hashFormat` using the [moment format syntax](http://momentjs.com/docs/#/displaying/format/).
+You can change the filename and hash format with `nameFormat`/`hashFormat` using this [syntax](https://date-fns.org/v2.16.1/docs/parse).
 
 If a date outside the specified range is called, you can call custom logic by passing a function to `onOutOfRange`.
 
