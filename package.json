@@ -7,7 +7,7 @@
     "start": "parcel demo/index.html"
   },
   "dependencies": {
-    "date-fns": "^2.16.1",
+    "date-fns": "^2.22.1",
     "glry": "^2.1.0"
   },
   "devDependencies": {
