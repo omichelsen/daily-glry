@@ -1,34 +1,34 @@
 {
-  "name": "daily-glry",
-  "version": "0.10.0",
-  "description": "Daily comic strip gallery with mobile/touch support.",
-  "main": "daily-glry.js",
-  "scripts": {
-    "start": "parcel demo/index.html"
-  },
-  "dependencies": {
-    "date-fns": "^2.22.1",
-    "glry": "^2.1.0"
-  },
-  "devDependencies": {
-    "parcel-bundler": "^1.12.4"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/omichelsen/daily-glry.git"
-  },
-  "keywords": [
-    "gallery",
-    "image",
-    "photo",
-    "mobile",
-    "touch",
-    "javascript"
-  ],
-  "author": "Ole Michelsen <ole@michelsen.dk>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/omichelsen/daily-glry/issues"
-  },
-  "homepage": "https://github.com/omichelsen/daily-glry"
+	"name": "daily-glry",
+	"version": "0.10.0",
+	"description": "Daily comic strip gallery with mobile/touch support.",
+	"main": "daily-glry.js",
+	"scripts": {
+		"start": "parcel demo/index.html"
+	},
+	"dependencies": {
+		"date-fns": "^2.22.1",
+		"glry": "^2.1.0"
+	},
+	"devDependencies": {
+		"parcel": "^2.0.1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/omichelsen/daily-glry.git"
+	},
+	"keywords": [
+		"gallery",
+		"image",
+		"photo",
+		"mobile",
+		"touch",
+		"javascript"
+	],
+	"author": "Ole Michelsen <ole@michelsen.dk>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/omichelsen/daily-glry/issues"
+	},
+	"homepage": "https://github.com/omichelsen/daily-glry"
 }
